@@ -1,20 +1,21 @@
-const { ApolloServer, gql } = require("apollo-server");
+require('dotenv').config(); 
 
-const typeDefs = gql`
-    type Query {
-        hello: String
-    }
-`;
+import {ApolloServer, gql} from "apollo-server"; 
 
-const resolvers = { 
-    Query:{ 
-        hello: () => "world", 
-    } 
-}; 
-    
+import schema from "./schema"; 
+
+  
+
 const server = new ApolloServer({ 
-    typeDefs, 
-    resolvers
+
+    schema, 
+
 }); 
-    
+
+ 
+
+const PORT = process.env.PORT; 
+
+ 
+
 server.listen().then(() => console.log("Server is running on http://localhost:4000/")); 
